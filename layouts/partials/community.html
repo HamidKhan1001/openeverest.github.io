@@ -62,7 +62,7 @@
                 <!-- Other Cards -->
                 <div class="space-y-6 min-w-0">
                 {{ range after 1 $data.sections }}
-                <div class="{{ if $data.dark_background }}bg-gray-800{{ else }}bg-gray-50{{ end }} p-6 rounded-xl border {{ if $data.dark_background }}border-gray-700{{ else }}border-gray-200{{ end }} hover:shadow-md transition {{ if eq .type "community-meeting" }}{{ if $data.dark_background }}border-blue-800 bg-blue-900/30{{ else }}border-blue-200 bg-blue-50{{ end }}{{ end }}">
+                <div class="{{ if $data.dark_background }}bg-gray-800{{ else }}bg-gray-50{{ end }} p-6 rounded-xl border {{ if $data.dark_background }}border-gray-700{{ else }}border-gray-200{{ end }} hover:shadow-md transition {{ if eq .type "community-meeting" }}{{ if $data.dark_background }}border-blue-800 bg-blue-900/30{{ else }}border-blue-200 bg-blue-50{{ end }}{{ end }} {{ if eq .type "lfx-mentorship" }}{{ if $data.dark_background }}border-indigo-700 bg-indigo-900/30{{ else }}border-indigo-200 bg-indigo-50{{ end }}{{ end }}">
                     <h3 class="text-lg font-semibold {{ if $data.dark_background }}text-white{{ else }}text-gray-900{{ end }} mb-2 flex items-center">
                     {{ if eq .icon "slack" }}
                         <svg class="w-5 h-5 mr-2 flex-shrink-0" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg">

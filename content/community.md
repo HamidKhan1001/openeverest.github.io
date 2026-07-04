@@ -30,13 +30,21 @@ sections:
     links:
       - text: "View Good First Issues Board"
         url: "https://github.com/orgs/openeverest/projects/2"
+  - type: "lfx-mentorship"
+    title: "🎓 LFX Mentorship"
+    text: "OpenEverest participates in the Linux Foundation's LFX Mentorship program. Work on real OpenEverest features with experienced maintainers as your guides."
+    links:
+      - text: "See OpenEverest mentorships"
+        url: "/mentorship"
   - type: "ask"
     title: "Let's Chat"
     icon: "slack"
-    text: "Join our real-time discussions on CNCF Slack."
+    text: "Join our real-time discussions on CNCF Slack. New to CNCF Slack? Grab a workspace invite first, then join our channel."
     links:
       - text: "Join #openeverest-users on Slack"
         url: "https://cloud-native.slack.com/archives/C09RRGZL2UX"
+      - text: "Get CNCF Slack invite"
+        url: "https://communityinviter.com/apps/cloud-native/cncf"
   - type: "issues"
     title: "🐞 Report Issues"
     text: "Found a bug or have an idea? Open an issue or start a discussion."
