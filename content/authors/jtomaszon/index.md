@@ -5,4 +5,4 @@ bio: "Javier Zon is the founder of ScaleDB, a data-infrastructure consultancy sp
 avatar: "avatar.png"
 ---
 
-Javier "Javi" Zon is a solutions architect and platform engineer focused on data infrastructure — streaming architectures (Kafka/Redpanda), MySQL at scale, ClickHouse, and Debezium-based change-data-capture. He founded ScaleDB to help teams design and operate these systems, and contributes OpenEverest providers (ClickHouse, Redpanda, Strimzi/Kafka) as part of that work. He's speaking at Percona Live NA 2026 on streaming MySQL changes to ClickHouse.
+Javier Zon is a solutions architect and platform engineer focused on data infrastructure — streaming architectures (Kafka/Redpanda), MySQL at scale, ClickHouse, and Debezium-based change-data-capture. He founded ScaleDB to help teams design and operate these systems, and contributes OpenEverest providers (ClickHouse, Redpanda, Strimzi/Kafka) as part of that work.
