@@ -4,7 +4,6 @@ date: 2026-07-06T10:00:00
 draft: false
 authors:
   - jtomaszon
-  - jarvis-scaledb
 tags:
   - blog
   - clickhouse
@@ -15,7 +14,7 @@ tags:
 summary: "A field report on building a ClickHouse provider for OpenEverest — how little we actually had to build, and how far an AI agent could carry it because the abstraction did the hard part."
 ---
 
-I came to OpenEverest as an outside contributor with one goal: stand up a working ClickHouse provider wrapping the Altinity operator. The part worth writing about isn't that it worked — it's how little we actually had to build, and that a big chunk of the implementation was driven by an AI agent running as part of ScaleDB's ops stack. The abstraction was clean enough that the agent could pick the path of least resistance and land a real provider.
+I came to OpenEverest as an outside contributor with one goal: stand up a working ClickHouse provider wrapping the Altinity operator. The provider lives here: [openeverest/provider-altinity-clickhouse](https://github.com/openeverest/provider-altinity-clickhouse). The part worth writing about isn't that it worked — it's how little we actually had to build, and that a big chunk of the implementation was driven by an AI agent running as part of ScaleDB's ops stack. The abstraction was clean enough that the agent could pick the path of least resistance and land a real provider.
 
 ### What "ready to start" actually looks like
 
