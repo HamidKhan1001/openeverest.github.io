@@ -5,6 +5,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    # Rebuild once a day to refresh the stargazers list baked into the site.
+    # The GitHub /stargazers endpoint is restricted to admins/collaborators
+    # since 2026-06-30, so we can no longer fetch it from client-side JS.
+    - cron: '0 6 * * *'
 permissions:
   contents: read
   pages: write
@@ -44,6 +49,22 @@ jobs:
           echo "${HOME}/.local/hugo" >> "${GITHUB_PATH}"
       - name: Install Node.js dependencies
         run: npm ci
+      - name: Fetch stargazers
+        env:
+          # Organization PAT (ROBOT_TOKEN) with `Metadata: Read` on
+          # openeverest/openeverest — that's the only scope the /stargazers
+          # endpoint requires. Since 2026-06-30 the endpoint no longer
+          # accepts unauthenticated requests. If the secret is missing
+          # (e.g. on a fork's PR build) we keep any pre-existing static JSON
+          # so the page still renders — just with slightly stale data.
+          STARGAZERS_TOKEN: ${{ secrets.ROBOT_TOKEN }}
+        run: |
+          if [ -z "${STARGAZERS_TOKEN}" ]; then
+            echo "ROBOT_TOKEN is not set — skipping stargazers refresh."
+            echo "The Stargazers page will fall back to the committed static/data/stargazers.json (if any)."
+            exit 0
+          fi
+          ./hack/fetch_stargazers.sh
       - name: Build the site
         run: |
           hugo \
