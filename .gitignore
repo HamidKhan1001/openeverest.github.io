@@ -22,3 +22,6 @@ yarn-error.log*
 *~
 
 attached_assets/
+
+# Generated at build time by hack/fetch_stargazers.sh
+/static/data/stargazers.json

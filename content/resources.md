@@ -7,6 +7,77 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Meet OpenEverest at KubeCon + CloudNativeCon Japan 2026"
+    url: "/events/kubecon-japan-2026/"
+    event_name: "KubeCon + CloudNativeCon Japan 2026"
+    location: "Yokohama, Japan — Level 3, Rooms 301-304, Table T-8"
+    date: 2026-07-30
+    speaker: "Sergey Pronin & Chi Fujii"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/kubecon-japan-project.png"
+    description: "Visit us at the Project Pavilion on Thursday, July 30. Full schedule, table details, and who you'll meet."
+
+  - title: "Age Gap Is Not A Problem - MySQL and Cloud-Native"
+    url: "https://buildevcon.com/events/mariadb-mysql-on-kubernetes"
+    event_name: "BuildDevCon, MariaDB & MySQL on Kubernetes"
+    location: "Virtual Conference"
+    date: 2026-07-25
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/builddevcon-2026-mysql-talk.png"
+
+  - title: "Meet OpenEverest at KubeCon + CloudNativeCon India 2026"
+    url: "/events/kubecon-india-2026/"
+    event_name: "KubeCon + CloudNativeCon India 2026"
+    location: "Mumbai, India — Jasmine Hall 1, Table T-6"
+    date: 2026-06-19
+    speaker: "Neel Shah & Vijeta Priya"
+    type: "conference"
+    image: "/images/resources/kubecon-india-2026.png"
+    description: "Visit us at the Project Pavilion on Friday, June 19. Full schedule, table details, and who you'll meet."
+
+  - title: "When Life Gives You Containers, Make an Open Source RDS: A Kubernetes Love Story"
+    url: "https://coscup.org/2026/en"
+    event_name: "COSCUP 2026 × UbuCon Asia"
+    location: "Taipei, Taiwan"
+    date: 2026-08-08
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/coscup-2026-spronin.png"
+
+  - title: "How OpenEverest Transformed From Single Vendor to Vendor Neutral to CNCF Sandbox Project"
+    url: "https://coscup.org/2026/en"
+    event_name: "COSCUP 2026 × UbuCon Asia"
+    location: "Taipei, Taiwan"
+    date: 2026-08-08
+    speaker: "Chi Fujii"
+    speaker_slug: "chilagrow"
+    type: "conference"
+    image: "/images/resources/coscup-2026-chi.png"
+
+  - title: "Unified database provisioning and management on Kubernetes"
+    url: "https://coscup.org/2026/en"
+    event_name: "COSCUP 2026 × UbuCon Asia"
+    location: "Taipei, Taiwan"
+    date: 2026-08-08
+    speaker: "Chi Fujii"
+    speaker_slug: "chilagrow"
+    type: "conference"
+
+  - title: "Your Database Deserves Better: Run It the Kubernetes Way with OpenEverest"
+    url: "https://ocgroups.dev/cncf/group/p5hsakp/event/pwn6dht"
+    event_name: "Cloud Native Community Group Pune"
+    location: "Platform9, Baner, Pune, India"
+    date: 2026-05-22
+    speaker: "Atharva Mhaske"
+    speaker_slug: "atharvamhaske"
+    type: "meetup"
+    image: "/images/resources/cnpg-pune-event.png"
+
+
   - title: "When Life Gives You Containers, Make an Open Source RDS: A Kubernetes Love Story"
     url: "https://perconalive.com/2026-usa/talks/when-life-gives-you-containers-make-an-open-source-rds-a-kubernetes-lo/"
     event_name: "Percona Live 2026"
@@ -18,12 +89,14 @@ events:
     image: "/images/resources/percona-live-2026-spronin.jpg"
 
   - title: "Unified Database Provisioning and Management on Kubernetes"
-    url: "https://sched.co/2JQtF"
+    url: "https://youtu.be/T5GXSeInXjc?si=L0-wJoUxfQzAkyul"
     event_name: "Open Source Summit + Embedded Linux Conference North America 2026"
     location: "Minneapolis, MN, USA"
     date: 2026-05-19
     speaker: "Kyle Avants"
     type: "conference"
+    image: "/images/resources/oss-na-2026-kyle-talk.jpg"
+    video: true
 
   - title: "Abstracting the Abyss: How to Run Production Data Workloads on Any Kubernetes Cluster"
     url: "https://community.cncf.io/events/details/cncf-cloud-native-gandhinagar-presents-abstracting-the-abyss-with-sergey-pronin-simplifying-data-workloads-on-kubernetes/"
@@ -36,7 +109,7 @@ events:
     image: "/images/resources/cncf-groups-gandhinagar.png"
 
   - title: "Unified Provisioning and Management for Diverse Databases on Kubernetes"
-    url: "https://buildevcon.com/cloud-native-databases/"
+    url: "https://www.youtube.com/watch?v=UrZLVmF9BJQ"
     event_name: "BuildDevCon, DB Mastery Series, Cloud-Native Databases"
     location: "Virtual Conference"
     date: 2026-02-20
@@ -44,9 +117,10 @@ events:
     speaker_slug: "chilagrow"
     type: "conference"
     image: "/images/resources/builddevcon-2026-cndb-chi.png"
+    video: true
 
   - title: "Treating Databases as Cattle: Architecting Stateless Patterns for Stateful Workloads"
-    url: "https://buildevcon.com/cloud-native-databases/"
+    url: "https://www.youtube.com/watch?v=BskqF8IMLIs"
     event_name: "BuildDevCon, DB Mastery Series, Cloud-Native Databases"
     location: "Virtual Conference"
     date: 2026-02-20
@@ -54,9 +128,10 @@ events:
     speaker_slug: "spron-in"
     type: "conference"
     image: "/images/resources/builddevcon-2026-cndb.png"
+    video: true
 
   - title: "Unified database provisioning and management on Kubernetes"
-    url: "https://www.youtube.com/watch?v=M-hub_7CORA&t=16765s"
+    url: "https://www.youtube.com/watch?v=LoxKhtU2Pd0"
     event_name: "FOSSASIA Summit 2026"
     location: "Bangkok, Thailand"
     date: 2026-03-09
@@ -67,7 +142,7 @@ events:
     video: true
 
   - title: "How Community-Driven Platforms Enable the Next Generation of Data"
-    url: "https://www.youtube.com/watch?v=M3mCRxtg1mE&t=12080s"
+    url: "https://www.youtube.com/watch?v=-wAWZ9qKoTc"
     event_name: "FOSSASIA Summit 2026"
     location: "Bangkok, Thailand"
     date: 2026-03-09
@@ -78,7 +153,7 @@ events:
     video: true
 
   - title: "The Death of the Third Pedal: Why Your Database Platform Should Drive Itself"
-    url: "https://www.eventbrite.com/e/percona-university-bangkok-thailand-tickets-1982802431448"
+    url: "https://www.youtube.com/watch?v=0PQuCyPHEOU"
     event_name: "Percona University"
     location: "Bangkok, Sathon Thani Building"
     date: 2026-03-11
@@ -86,7 +161,7 @@ events:
     speaker_slug: "spron-in"
     type: "university"
     image: "/images/resources/percona-university-bangkok-2026.png"
-    video: false
+    video: true
 
   - title: "OpenEverest at PGConf India 2026"
     url: "https://pgconf.in/"
