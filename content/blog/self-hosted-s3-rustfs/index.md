@@ -124,14 +124,18 @@ helm install rustfs rustfs/rustfs -n rustfs -f override-values.yaml
 ### Step 1.5: Check that it's running
 
 ```bash
-kubectl get pods -n rustfs
+$ kubectl get pods -n rustfs
+
+NAME                          READY   STATUS    RESTARTS   AGE
+rustfs-c8dd447c9-4wx2q         1/1     Running   0          47s
 ```
-![kubectl get pods -n rustfs](images/img1.png)
 
 ```bash
-kubectl get svc -n rustfs
+$ kubectl get svc -n rustfs
+
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
+rustfs-svc   ClusterIP   10.43.221.127  <none>        9000/TCP,9001/TCP   3m54s
 ```
-![kubectl get svc -n rustfs](images/img2.png)
 
 You should see one pod running, and a service with two ports:
 - **9000** — used to store and fetch data (this is what OpenEverest talks to)
@@ -272,12 +276,19 @@ Complete the rest of the wizard and click **Create**. OpenEverest will provision
 ### Step 4.6: Confirm it's running
 
 ```bash
-kubectl get pods -n everest
+$ kubectl get pods -n everest
+
+NAME                                               READY   STATUS      RESTARTS   AGE
+percona-postgresql-operator-5c4dd655bd-9hmzm       1/1     Running     0          83m
+percona-server-mongodb-operator-7bb69bb49b-nq2xp   1/1     Running     0          83m
+percona-xtradb-cluster-operator-684cd7646c-286q6   1/1     Running     0          83m
+postgresql-384-backup-tssw-6chzs                   0/1     Completed   0          102s
+postgresql-384-instance1-vvmn-0                    4/4     Running     0          118s
+postgresql-384-pgbouncer-5fd7c9df7d-xflst          2/2     Running     0          115s
+postgresql-384-repo-host-0                         2/2     Running     0          116s
 ```
 
 You should see the new Postgres instance, along with its pgBouncer and repo-host pods, all in `Running` state.
-
-![Pods running in everest namespace](images/img11.png)
 
 ---
 
@@ -344,7 +355,33 @@ SELECT * FROM blog_demo;
 
 You should see 2 rows.
 
-![psql showing two baseline rows](images/img16.png)
+```bash
+$ kubectl exec -it postgresql-384-instance1-vvmn-0 -n everest -- bash
+
+bash-5.1$ psql
+psql (18.3 - Percona Server for PostgreSQL 18.3.1)
+Type "help" for help.
+
+postgres=# CREATE TABLE blog_demo (
+    id SERIAL PRIMARY KEY,
+    note TEXT,
+    created_at TIMESTAMP DEFAULT now()
+);
+CREATE TABLE
+
+postgres=# INSERT INTO blog_demo (note) VALUES ('before-backup-row-1');
+INSERT 0 1
+
+postgres=# INSERT INTO blog_demo (note) VALUES ('before-backup-row-2');
+INSERT 0 1
+
+postgres=# SELECT * FROM blog_demo;
+ id |        note         |         created_at
+----+---------------------+----------------------------
+  1 | before-backup-row-1 | 2026-07-08 09:55:34.78151
+  2 | before-backup-row-2 | 2026-07-08 09:55:42.07359
+(2 rows)
+```
 
 ### Step 6.2: Take a backup
 
@@ -360,7 +397,22 @@ SELECT count(*) FROM blog_demo;
 
 This should now show `3`. This row is our test — if the restore works, it should disappear.
 
-![psql showing count of 3 after inserting the extra row](images/img17.png)
+```bash
+$ kubectl exec -it postgresql-384-instance1-vvmn-0 -n everest -- bash
+
+bash-5.1$ psql
+psql (18.3 - Percona Server for PostgreSQL 18.3.1)
+Type "help" for help.
+
+postgres=# INSERT INTO blog_demo (note) VALUES ('after-backup-should-disappear');
+INSERT 0 1
+
+postgres=# SELECT count(*) FROM blog_demo;
+ count
+-------
+     3
+(1 row)
+```
 
 ### Step 6.4: Restore from the backup
 
@@ -383,7 +435,26 @@ SELECT * FROM blog_demo;
 SELECT count(*) FROM blog_demo;
 ```
 
-![psql showing count back to 2 after restore](images/img19.png)
+```bash
+$ kubectl exec -it postgresql-384-instance1-vvmn-0 -n everest -- bash
+
+bash-5.1$ psql
+psql (18.3 - Percona Server for PostgreSQL 18.3.1)
+Type "help" for help.
+
+postgres=# SELECT * FROM blog_demo;
+ id |        note         |         created_at
+----+---------------------+----------------------------
+  1 | before-backup-row-1 | 2026-07-08 09:55:34.78151
+  2 | before-backup-row-2 | 2026-07-08 09:55:42.07359
+(2 rows)
+
+postgres=# SELECT count(*) FROM blog_demo;
+ count
+-------
+     2
+(1 row)
+```
 
 **Expected result:** `count` is back to `2`. Only `before-backup-row-1` and `before-backup-row-2` remain — `after-backup-should-disappear` is gone. This confirms the restore worked. The cluster's data went back to exactly the state it was in when the backup was taken. 
 
