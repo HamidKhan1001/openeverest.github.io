@@ -22,7 +22,7 @@ events:
     url: "https://buildevcon.com/events/mariadb-mysql-on-kubernetes"
     event_name: "BuildDevCon, MariaDB & MySQL on Kubernetes"
     location: "Virtual Conference"
-    date: 2026-07-25
+    date: 2026-06-25
     speaker: "Sergey Pronin"
     speaker_slug: "spron-in"
     type: "conference"
