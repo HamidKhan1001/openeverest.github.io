@@ -39,7 +39,7 @@ events:
     description: "Visit us at the Project Pavilion on Friday, June 19. Full schedule, table details, and who you'll meet."
 
   - title: "When Life Gives You Containers, Make an Open Source RDS: A Kubernetes Love Story"
-    url: "https://coscup.org/2026/en"
+    url: "https://pretalx.coscup.org/coscup-2026/talk/ASC9WV/"
     event_name: "COSCUP 2026 × UbuCon Asia"
     location: "Taipei, Taiwan"
     date: 2026-08-08
@@ -49,7 +49,7 @@ events:
     image: "/images/resources/coscup-2026-spronin.png"
 
   - title: "How OpenEverest Transformed From Single Vendor to Vendor Neutral to CNCF Sandbox Project"
-    url: "https://coscup.org/2026/en"
+    url: "https://pretalx.coscup.org/coscup-2026/talk/SXP9SP/"
     event_name: "COSCUP 2026 × UbuCon Asia"
     location: "Taipei, Taiwan"
     date: 2026-08-08
@@ -58,8 +58,8 @@ events:
     type: "conference"
     image: "/images/resources/coscup-2026-chi.png"
 
-  - title: "Unified database provisioning and management on Kubernetes"
-    url: "https://coscup.org/2026/en"
+  - title: "Running databases on Kubernetes can be easy - meet OpenEverest!"
+    url: "hhttps://pretalx.coscup.org/coscup-2026/talk/LBHUAC/"
     event_name: "COSCUP 2026 × UbuCon Asia"
     location: "Taipei, Taiwan"
     date: 2026-08-08
