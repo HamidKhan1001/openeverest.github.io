@@ -1,7 +1,9 @@
 ---
-title: "How an AI Agent Shipped a ClickHouse Provider for OpenEverest — and What That Says About the Abstraction"
-date: 2026-07-06T10:00:00
+title: "How an AI Agent Shipped a ClickHouse Provider for OpenEverest"
+date: 2026-07-16T10:00:00
 draft: false
+image:
+  url: blog-clickhouse-provider-cover.png
 authors:
   - jtomaszon
 tags:
@@ -16,13 +18,17 @@ summary: "A field report on building a ClickHouse provider for OpenEverest — h
 
 I came to OpenEverest as an outside contributor with one goal: stand up a working ClickHouse provider wrapping the Altinity operator. The provider lives here: [openeverest/provider-altinity-clickhouse](https://github.com/openeverest/provider-altinity-clickhouse). The part worth writing about isn't that it worked — it's how little we actually had to build, and that a big chunk of the implementation was driven by an AI agent running as part of ScaleDB's ops stack. The abstraction was clean enough that the agent could pick the path of least resistance and land a real provider.
 
+### First, what's a provider?
+
+If you're new to OpenEverest v2, a **provider** is the pluggable blueprint for a database technology. Instead of baking each database into the core, OpenEverest decouples that logic into a self-contained plugin that defines its components (engine, proxy, backup agent), topologies (e.g. standard vs. sharded), and versions — then reconciles them on top of an existing operator. If you want the backstory, we covered the shift [from a monolith to a modular core](/blog/from-monolith-to-modular/) and shipped it in the [v2 Developer Preview](/blog/v2-developer-preview-release/). Every provider is built with the [Provider SDK](https://github.com/openeverest/provider-sdk), and the step-by-step is in the [Provider Development guide](https://github.com/openeverest/provider-sdk/blob/main/PROVIDER_DEVELOPMENT.md). ClickHouse is just the latest engine stamped onto that chassis.
+
 ### What "ready to start" actually looks like
 
 You're not building a database orchestrator from scratch. OpenEverest hands you the hard parts as a contract:
 
-- The **Provider CRD** and reconcile loop — the lifecycle is defined, you implement against it.
+- The [**Provider CRD**](/blog/from-monolith-to-modular/) and reconcile loop — the lifecycle is defined, you implement against it.
 - **RBAC, health probes, and the Helm-subchart wrap** — the Kubernetes plumbing is scaffolded.
-- A **Tilt dev flow + kuttl harness** — a working local loop and a way to prove your reconcile does what you think.
+- A **Tilt dev flow + kuttl harness** — a working local loop and a way to prove your reconcile does what you think, both shipped with the [Provider SDK](https://github.com/openeverest/provider-sdk).
 
 So the surface area you actually own is small: wrap an existing operator (Altinity), fill in the ClickHouse-specific reconcile logic, and let the platform carry the rest. The provider you ship is mostly a thin domain layer on top of a chassis that already exists. That's the whole point of the abstraction, and it holds up in practice.
 
@@ -38,7 +44,9 @@ To be fair, there were a handful of first-run gotchas — none hard, all nameabl
 
 The rest were the usual first-run tax: an RBAC group that needs to be present, keeping the Provider CR name in sync with the provider's identity constant in code, and k3d's 33-character cluster-name limit (small, dumb, real — a long name silently fails to create).
 
-None of these are hard. All of them cost time when you don't know them yet. So we folded them back into the provider SDK — fixing the defaults at the source and adding a short "first-run gotchas" section to the development guide — so the next contributor skips the hour we spent.
+![OpenEverest - Blog - ClickHouse in OpenEverest Web UI](clickhouse-provider-0.png)
+
+None of these are hard. All of them cost time when you don't know them yet. So we folded them back into the provider SDK — fixing the defaults at the source and adding a short "first-run gotchas" section to the [development guide](https://github.com/openeverest/provider-sdk/blob/main/PROVIDER_DEVELOPMENT.md) — so the next contributor skips the hour we spent.
 
 ### What made it click
 
@@ -51,3 +59,9 @@ We're now extending the same pattern to streaming — Redpanda and Strimzi/Kafka
 ### Closing note
 
 If you're thinking about contributing a provider: the lift is smaller than it looks, because the platform already did the hard part. The abstraction is clean enough that we could hand a lot of the build to an AI agent and get a working provider out the other side — and once the first one is green, the second is dramatically faster.
+
+Want to build your own? Start with the [Provider SDK](https://github.com/openeverest/provider-sdk) and the [Provider Development guide](https://github.com/openeverest/provider-sdk/blob/main/PROVIDER_DEVELOPMENT.md) — and come say hi:
+
+* **Chat with us:** Join the `#openeverest-users` channel on [CNCF Slack](https://cloud-native.slack.com/archives/C09RRGZL2UX).
+* **Join the conversation:** Tune in to our bi-weekly [Community Meetings](https://github.com/openeverest#openeverest-community-meetings).
+* **Explore more:** Visit our [Community Hub](https://openeverest.io/#community) for guides and other ways to get involved.
