@@ -59,7 +59,7 @@ events:
     image: "/images/resources/coscup-2026-chi.png"
 
   - title: "Running databases on Kubernetes can be easy - meet OpenEverest!"
-    url: "hhttps://pretalx.coscup.org/coscup-2026/talk/LBHUAC/"
+    url: "https://pretalx.coscup.org/coscup-2026/talk/LBHUAC/"
     event_name: "COSCUP 2026 × UbuCon Asia"
     location: "Taipei, Taiwan"
     date: 2026-08-08
