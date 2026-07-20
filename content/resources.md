@@ -7,6 +7,15 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Beyond Built-in Engines: Extending OpenEverest into a Universal Database Control Plane"
+    url: "/events/kcd-openinfra-vietnam-2026/"
+    event_name: "KCD & OpenInfra Days Vietnam 2026"
+    location: "Hanoi, Vietnam — Sheraton Hanoi Hotel, Room 3"
+    date: 2026-07-25
+    speaker: "Tan Huy Nguyen & Vinh Bui Hoang"
+    type: "conference"
+    description: "Saturday, July 25 · 8:00–8:30 AM. How the presenters built a unified database control plane on top of OpenEverest."
+
   - title: "Meet OpenEverest at KubeCon + CloudNativeCon Japan 2026"
     url: "/events/kubecon-japan-2026/"
     event_name: "KubeCon + CloudNativeCon Japan 2026"
