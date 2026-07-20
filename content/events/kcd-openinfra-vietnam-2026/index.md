@@ -8,6 +8,8 @@ event_url: "https://2026.vietopeninfra.org/en/"
 event_date: 2026-07-25
 location: "Hanoi, Vietnam — Sheraton Hanoi Hotel"
 date_range: "July 25, 2026"
+image:
+  url: "/images/resources/kcd-viet-banner.png"
 
 # Session details
 schedule:

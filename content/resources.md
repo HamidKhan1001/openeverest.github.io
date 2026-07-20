@@ -14,6 +14,7 @@ events:
     date: 2026-07-25
     speaker: "Tan Huy Nguyen & Vinh Bui Hoang"
     type: "conference"
+    image: "/images/resources/kcd-viet-banner.png"
     description: "Saturday, July 25 · 8:00–8:30 AM. How the presenters built a unified database control plane on top of OpenEverest."
 
   - title: "Meet OpenEverest at KubeCon + CloudNativeCon Japan 2026"
@@ -48,17 +49,17 @@ events:
     description: "Visit us at the Project Pavilion on Friday, June 19. Full schedule, table details, and who you'll meet."
 
   - title: "When Life Gives You Containers, Make an Open Source RDS: A Kubernetes Love Story"
-    url: "https://coscup.org/2026/en"
+    url: "/events/coscup-2026/"
     event_name: "COSCUP 2026 × UbuCon Asia"
     location: "Taipei, Taiwan"
-    date: 2026-08-08
+    date: 2026-08-09
     speaker: "Sergey Pronin"
     speaker_slug: "spron-in"
     type: "conference"
     image: "/images/resources/coscup-2026-spronin.png"
 
   - title: "How OpenEverest Transformed From Single Vendor to Vendor Neutral to CNCF Sandbox Project"
-    url: "https://coscup.org/2026/en"
+    url: "/events/coscup-2026/"
     event_name: "COSCUP 2026 × UbuCon Asia"
     location: "Taipei, Taiwan"
     date: 2026-08-08
@@ -68,7 +69,7 @@ events:
     image: "/images/resources/coscup-2026-chi.png"
 
   - title: "Unified database provisioning and management on Kubernetes"
-    url: "https://coscup.org/2026/en"
+    url: "/events/coscup-2026/"
     event_name: "COSCUP 2026 × UbuCon Asia"
     location: "Taipei, Taiwan"
     date: 2026-08-08
