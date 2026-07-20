@@ -41,20 +41,20 @@ vendor-neutral database provisioning and management on Kubernetes.
 
 ## Our talks
 
-### When Life Gives You Containers, Make an Open Source RDS: A Kubernetes Love Story
+### [When Life Gives You Containers, Make an Open Source RDS: A Kubernetes Love Story](https://pretalx.coscup.org/coscup-2026/talk/ASC9WV/)
 **Sergey Pronin** · Sunday, August 9
 
 A story-driven look at building an open source RDS-like experience on top of
 Kubernetes — the highs, the lows, and why running databases the cloud-native way
 is worth it.
 
-### How OpenEverest Transformed From Single Vendor to Vendor Neutral to CNCF Sandbox Project
+### [How OpenEverest Transformed From Single Vendor to Vendor Neutral to CNCF Sandbox Project](https://pretalx.coscup.org/coscup-2026/talk/SXP9SP/)
 **Chi Fujii** · Saturday, August 8
 
 The journey from a single-vendor tool to a vendor-neutral, community-driven CNCF
 Sandbox project — what changed, why it mattered, and what's next.
 
-### Unified database provisioning and management on Kubernetes
+### [Unified database provisioning and management on Kubernetes](https://pretalx.coscup.org/coscup-2026/talk/LBHUAC/)
 **Chi Fujii** · Saturday, August 8
 
 A practical walkthrough of provisioning and managing multiple database engines
