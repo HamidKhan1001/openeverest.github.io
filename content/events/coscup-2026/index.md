@@ -54,7 +54,7 @@ is worth it.
 The journey from a single-vendor tool to a vendor-neutral, community-driven CNCF
 Sandbox project — what changed, why it mattered, and what's next.
 
-### [Unified database provisioning and management on Kubernetes](https://pretalx.coscup.org/coscup-2026/talk/LBHUAC/)
+### [Running databases on Kubernetes can be easy - meet OpenEverest!](https://pretalx.coscup.org/coscup-2026/talk/LBHUAC/)
 **Chi Fujii** · Saturday, August 8
 
 A practical walkthrough of provisioning and managing multiple database engines
