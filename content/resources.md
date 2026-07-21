@@ -68,7 +68,7 @@ events:
     type: "conference"
     image: "/images/resources/coscup-2026-chi.png"
 
-  - title: "Unified database provisioning and management on Kubernetes"
+  - title: "Running databases on Kubernetes can be easy - meet OpenEverest!"
     url: "/events/coscup-2026/"
     event_name: "COSCUP 2026 × UbuCon Asia"
     location: "Taipei, Taiwan"
