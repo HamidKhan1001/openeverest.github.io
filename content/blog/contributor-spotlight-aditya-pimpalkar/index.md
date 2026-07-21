@@ -1,7 +1,7 @@
 ---
 title: "Contributor Spotlight: Aditya Pimpalkar"
 date: 2026-07-21T06:00:00
-draft: true
+draft: false
 image:
     url: aditya-blog-cover.png
     attribution:
