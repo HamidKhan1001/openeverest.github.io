@@ -7,6 +7,16 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Beyond Built-in Engines: Extending OpenEverest into a Universal Database Control Plane"
+    url: "/events/kcd-openinfra-vietnam-2026/"
+    event_name: "KCD & OpenInfra Days Vietnam 2026"
+    location: "Hanoi, Vietnam — Sheraton Hanoi Hotel, Room 3"
+    date: 2026-07-25
+    speaker: "Tan Huy Nguyen & Vinh Bui Hoang"
+    type: "conference"
+    image: "/images/resources/kcd-viet-banner.png"
+    description: "Saturday, July 25 · 8:00–8:30 AM. How the presenters built a unified database control plane on top of OpenEverest."
+
   - title: "Meet OpenEverest at KubeCon + CloudNativeCon Japan 2026"
     url: "/events/kubecon-japan-2026/"
     event_name: "KubeCon + CloudNativeCon Japan 2026"
@@ -39,17 +49,17 @@ events:
     description: "Visit us at the Project Pavilion on Friday, June 19. Full schedule, table details, and who you'll meet."
 
   - title: "When Life Gives You Containers, Make an Open Source RDS: A Kubernetes Love Story"
-    url: "https://pretalx.coscup.org/coscup-2026/talk/ASC9WV/"
+    url: "/events/coscup-2026/"
     event_name: "COSCUP 2026 × UbuCon Asia"
     location: "Taipei, Taiwan"
-    date: 2026-08-08
+    date: 2026-08-09
     speaker: "Sergey Pronin"
     speaker_slug: "spron-in"
     type: "conference"
     image: "/images/resources/coscup-2026-spronin.png"
 
   - title: "How OpenEverest Transformed From Single Vendor to Vendor Neutral to CNCF Sandbox Project"
-    url: "https://pretalx.coscup.org/coscup-2026/talk/SXP9SP/"
+    url: "/events/coscup-2026/"
     event_name: "COSCUP 2026 × UbuCon Asia"
     location: "Taipei, Taiwan"
     date: 2026-08-08
@@ -59,7 +69,7 @@ events:
     image: "/images/resources/coscup-2026-chi.png"
 
   - title: "Running databases on Kubernetes can be easy - meet OpenEverest!"
-    url: "https://pretalx.coscup.org/coscup-2026/talk/LBHUAC/"
+    url: "/events/coscup-2026/"
     event_name: "COSCUP 2026 × UbuCon Asia"
     location: "Taipei, Taiwan"
     date: 2026-08-08
