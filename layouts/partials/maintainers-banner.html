@@ -1,0 +1,80 @@
+<!-- Talk to maintainers banner (desktop only, dismissible for 60 days) -->
+<style>
+    /* Never show below the Tailwind lg breakpoint, even on resize. */
+    @media (max-width: 1023px) {
+        #maintainers-banner { display: none !important; }
+    }
+</style>
+<div id="maintainers-banner" class="hidden bg-[#161641] text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-center gap-4 py-2.5 relative">
+            <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm pr-8">
+                <a id="maintainers-banner-cta" href="https://talk.openeverest.tech/30min" target="_blank" rel="noopener noreferrer" class="font-medium text-white hover:text-[#7790DE] transition-colors">
+                    <span id="maintainers-banner-message"></span>
+                </a>
+            </div>
+            <button id="maintainers-banner-close" type="button" aria-label="Dismiss" class="absolute right-0 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors p-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var COOKIE_NAME = 'oe_maintainers_banner_dismissed';
+    var COOKIE_DAYS = 60;
+
+    var MESSAGES = [
+        'Need help with your OpenEverest setup? Chat 1-on-1 with a maintainer \u2192',
+        'Evaluating OpenEverest for your team? Share your roadmap needs with maintainers \u2192',
+        'Have architecture or roadmap questions? Talk to a maintainer \u2192',
+        'Running OpenEverest in production? Book time with a maintainer \u2192',
+        'Stuck on a database-on-Kubernetes challenge? Get 1-on-1 help from a maintainer \u2192',
+        'Curious how OpenEverest fits your stack? Ask a maintainer directly \u2192',
+        'Planning a migration to OpenEverest? Talk it through with a maintainer \u2192',
+        'Want to shape the OpenEverest roadmap? Share feedback with maintainers \u2192',
+        'Not sure where to start with OpenEverest? A maintainer can walk you through it \u2192',
+        'Thinking about contributing? Grab time with a maintainer to get going \u2192'
+    ];
+
+    function hasCookie(name) {
+        return document.cookie.split(';').some(function (c) {
+            return c.trim().indexOf(name + '=') === 0;
+        });
+    }
+
+    function setCookie(name, value, days) {
+        var expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+        document.cookie = name + '=' + value + '; expires=' + expires + '; path=/; SameSite=Lax';
+    }
+
+    var banner = document.getElementById('maintainers-banner');
+    if (!banner) { return; }
+
+    // Skip if already dismissed. Visibility on small screens is handled by the
+    // CSS media query above, so resizing the window hides it responsively.
+    if (hasCookie(COOKIE_NAME)) { return; }
+
+    var messageEl = document.getElementById('maintainers-banner-message');
+    messageEl.textContent = MESSAGES[Math.floor(Math.random() * MESSAGES.length)];
+    banner.classList.remove('hidden');
+
+    function dismiss() {
+        setCookie(COOKIE_NAME, '1', COOKIE_DAYS);
+        banner.classList.add('hidden');
+    }
+
+    document.getElementById('maintainers-banner-close').addEventListener('click', dismiss);
+
+    // Clicking the CTA dismisses the banner for 60 days.
+    var cta = document.getElementById('maintainers-banner-cta');
+    if (cta) {
+        cta.addEventListener('click', function () {
+            setCookie(COOKIE_NAME, '1', COOKIE_DAYS);
+        });
+    }
+})();
+</script>

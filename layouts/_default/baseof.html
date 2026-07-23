@@ -32,6 +32,7 @@
 </head>
 
 <body class="min-h-screen flex flex-col">
+    {{ partial "maintainers-banner.html" . }}
     {{ partial "header.html" . }}
     <main class="flex-grow">
         {{ block "main" . }}{{ end }}
