@@ -7,6 +7,28 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Architecture Without Gatekeepers: Decoupling for Neutrality"
+    url: "/events/kubecon-china-2026/"
+    event_name: "KubeCon + CloudNativeCon + OpenInfra Summit + PyTorch Conference China 2026"
+    location: "Shanghai, China"
+    date: 2026-09-09
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/kubecon-china-banner.png"
+    description: "A Project Lightning Talk on how OpenEverest rebuilt its architecture into a modular, vendor-neutral plugin system."
+
+  - title: "Meet OpenEverest at KubeCon + CloudNativeCon + OpenInfra Summit + PyTorch Conference China 2026"
+    url: "/events/kubecon-china-2026/"
+    event_name: "KubeCon + CloudNativeCon + OpenInfra Summit + PyTorch Conference China 2026"
+    location: "Shanghai, China — Grand Ballroom I, Table T-1"
+    date: 2026-09-09
+    speaker: "Sergey Pronin"
+    speaker_slug: "spron-in"
+    type: "conference"
+    image: "/images/resources/kubecon-china-banner.png"
+    description: "Visit us at the Project Pavilion on Wednesday, September 9. Full schedule, table details, and who you'll meet."
+
   - title: "Beyond Built-in Engines: Extending OpenEverest into a Universal Database Control Plane"
     url: "/events/kcd-openinfra-vietnam-2026/"
     event_name: "KCD & OpenInfra Days Vietnam 2026"
