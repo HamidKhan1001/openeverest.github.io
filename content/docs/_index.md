@@ -2,6 +2,10 @@
 ---
 title: Documentation
 versions:
+  - release: "1.16.2"
+    location: "/documentation/1.16.2"
+    release_date: 2026-07-30T12:31:16+0000
+    release_notes: "https://github.com/openeverest/everest-doc/releases/tag/v1.16.2"
   - release: "1.16.1"
     location: "/documentation/1.16.1"
     release_date: 2026-07-08T10:34:00+0000
