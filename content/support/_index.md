@@ -23,4 +23,9 @@ supporters:
     description: |
       BlancoByte is a database engineering consultancy based in the Netherlands, specializing in ClickHouse, MongoDB, Couchbase, real-time pipelines, and modern data infrastructure.
       Together, we're bringing private, self-hosted Database-as-a-Service to organizations that want cloud-era ergonomics without cloud-era trade-offs.
+  - name: "PurnaBIT"
+    url: "https://www.purnabit.com"
+    logo: "/images/logos/purnabit.svg"
+    description: |
+      PurnaBIT provides database and infrastructure consulting services and helps companies to run data workloads on Kubernetes with Operators, OpenEverest and Solanica Platform.
 ---
