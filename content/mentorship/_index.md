@@ -12,6 +12,55 @@ intro: |
   grow as cloud-native engineers, and ship features that benefit every OpenEverest user.
 
 programs:
+  - title: "Develop the Object Storage provider"
+    term: "2026 Term 3 — Sep–Nov"
+    status: "Accepting applications"
+    sponsor: "CNCF"
+    summary: |
+      OpenEverest already manages databases on Kubernetes through its provider framework.
+      This project extends that framework to object storage, allowing users who run OpenEverest
+      on-premise or at the edge to easily deploy S3-compatible storage alongside their databases
+      with full integration.
+    skills:
+      - "GO"
+      - "Kubernetes"
+      - "Helm"
+      - "S3 API"
+      - "MinIO"
+      - "SeaweedFS"
+      - "Object storage"
+    project_url: "https://mentorship.lfx.linuxfoundation.org/project/f1ac447c-0f12-42d4-bc90-83c9a3bd2648"
+    mentors:
+      - name: "Diogo Recharte"
+        slug: "recharte"
+      - name: "Sergey Pronin"
+        slug: "spron-in"
+
+  - title: "Performance Testing Plugin"
+    term: "2026 Term 3 — Sep–Nov"
+    status: "Accepting applications"
+    sponsor: "CNCF"
+    summary: |
+      OpenEverest v2 already ships with a generic plugin framework that provides extension points
+      across the UI, CLI, and API. This project is about building a performance-testing plugin on
+      top of that existing infrastructure so users can easily verify if their deployed databases
+      actually perform as expected.
+    skills:
+      - "GO"
+      - "Kubernetes"
+      - "TypeScript"
+      - "React"
+      - "PostgreSQL"
+      - "MySQL"
+      - "MongoDB"
+      - "sysbench"
+    project_url: "https://mentorship.lfx.linuxfoundation.org/project/4ef073a5-7d7a-43be-a18c-68e9a9b61b5b"
+    mentors:
+      - name: "Diogo Recharte"
+        slug: "recharte"
+      - name: "Sergey Pronin"
+        slug: "spron-in"
+
   - title: "Plugin Developer Playground: Interactive UI Schema Editor"
     term: "2026 Term 2 — Jun–Aug"
     status: "Applications closed"
