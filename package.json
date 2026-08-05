@@ -17,5 +17,16 @@
     "postcss": "^8.5.25",
     "postcss-cli": "^11.0.1",
     "tailwindcss": "^4.1.17"
+  },
+  "overrides": {
+    "anymatch": {
+      "picomatch": "^2.3.2"
+    },
+    "readdirp": {
+      "picomatch": "^2.3.2"
+    },
+    "tinyglobby": {
+      "picomatch": "^4.0.4"
+    }
   }
 }
