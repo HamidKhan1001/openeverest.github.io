@@ -9,7 +9,7 @@ event_date: 2026-08-08
 location: "Taipei, Taiwan"
 date_range: "August 8–9, 2026"
 image:
-  url: "/images/resources/coscup-banner.png"
+  url: "/images/resources/coscup-banner.jpg"
 
 # OpenEverest team speaking at the event
 representatives:
@@ -59,6 +59,10 @@ Sandbox project — what changed, why it mattered, and what's next.
 
 A practical walkthrough of provisioning and managing multiple database engines
 through a single control plane on Kubernetes.
+
+## Meet us at the booth
+
+Find OpenEverest at Hall TR-409-1 (Community/ Sponsor Booths), booth C7.
 
 ## Not at COSCUP but want to connect?
 
