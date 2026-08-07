@@ -1,7 +1,7 @@
 ---
 title: "Building a CloudNativePG Provider with OpenEverest v2"
 date: 2026-08-07T06:10:00
-draft: true
+draft: false
 image:
     url: openeverest_cloudnativepg.png
     attribution:
