@@ -1,6 +1,6 @@
 ---
 title: "Building a CloudNativePG Provider with OpenEverest v2"
-date: 2026-07-23T15:10:00
+date: 2026-08-07T06:10:00
 draft: true
 image:
     url: openeverest_cloudnativepg.png
@@ -19,7 +19,7 @@ summary:
 ---
 ## What is CloudNativePG?
 
-[CloudNativePG](https://cloudnative-pg.io/) CNPG is an open-source operator designed to manage PostgreSQL workloads on any supported Kubernetes cluster. It fosters cloud-neutrality through seamless deployment in private, public, hybrid, and multi-cloud environments via its distributed topology feature.
+[CloudNativePG](https://cloudnative-pg.io/) (CNPG) is an open-source operator designed to manage PostgreSQL workloads on any supported Kubernetes cluster. It fosters cloud-neutrality through seamless deployment in private, public, hybrid, and multi-cloud environments via its distributed topology feature.
 
 Built around DevOps principles, CloudNativePG embraces declarative configuration and immutable infrastructure, ensuring reliability and automation in database management.
 
@@ -41,7 +41,7 @@ OpenEverest v1 baked database-specific logic into the core. Adding a new engine 
 
 The first slice of the provider was surprisingly smooth.
 
-***Core provisioning***: scaffolding with the Provider SDK, wiring `Sync` to create a CloudNativePG `Cluster` from the `Instance` engine component, and getting basic status reconciliation working. Once the mental model clicked, day-one create/reconcile felt natural.
+***Core provisioning***: scaffolding with the [Provider SDK](https://github.com/openeverest/provider-sdk), wiring `Sync` to create a CloudNativePG `Cluster` from the `Instance` engine component, and getting basic status reconciliation working. Once the mental model clicked, day-one create/reconcile felt natural.
 
 ***UI and resource settings***: expanding the `replicaSet` UI schema, PostgreSQL parameters, managed roles, and separate CPU/memory requests and limits. The definition-driven UI meant most of this was schema work plus small Go type changes, not a custom frontend.
 
