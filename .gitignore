@@ -4,6 +4,7 @@
 node_modules/
 .env
 *.log
+.npm-cache
 
 # Hugo
 /public/
