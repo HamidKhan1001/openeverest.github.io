@@ -36,6 +36,9 @@ help with such a discovery. And we came up with the Hub.
 As you see from the screenshot — it shows the available providers and
 plugins. Some of those were not developed by the core team.
 
+A small note before we dive in: the Hub relies on the plugin system
+introduced in OpenEverest v2, so it is available starting from v2.
+
 ## How it works
 
 There are two main components of the hub:
@@ -86,7 +89,7 @@ We are far from done. We have various things to work on.
 ### Design and UI
 
 <p>
-  <a href="https://github.com/openeverest/plugin-hub/issues/13" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;background-color:#24292f;color:#fff;text-decoration:none;padding:4px 12px;border-radius:9999px;font-weight:600;font-size:14px;">🧩 Issue #13</a>
+  <a href="https://github.com/openeverest/plugin-hub/issues/13" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;background-color:#24292f;color:#fff;text-decoration:none;padding:4px 12px;border-radius:9999px;font-weight:600;font-size:14px;">Issue #13</a>
 </p>
 
 As you might have noticed the UI of the plugin is not following the
@@ -103,7 +106,7 @@ than welcome to brainstorm it with us.
 ### Air gapped environment support
 
 <p>
-  <a href="https://github.com/openeverest/plugin-hub/issues/12" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;background-color:#24292f;color:#fff;text-decoration:none;padding:4px 12px;border-radius:9999px;font-weight:600;font-size:14px;">🔒 Issue #12</a>
+  <a href="https://github.com/openeverest/plugin-hub/issues/12" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;background-color:#24292f;color:#fff;text-decoration:none;padding:4px 12px;border-radius:9999px;font-weight:600;font-size:14px;">Issue #12</a>
   <span style="display:inline-flex;align-items:center;background-color:#7057ff;color:#fff;padding:4px 12px;border-radius:9999px;font-weight:600;font-size:13px;margin-left:6px;">good first issue</span>
 </p>
 
@@ -117,7 +120,7 @@ ship it with the plugin.
 ### Install with UI
 
 <p>
-  <a href="https://github.com/openeverest/plugin-hub/issues/15" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;background-color:#24292f;color:#fff;text-decoration:none;padding:4px 12px;border-radius:9999px;font-weight:600;font-size:14px;">🖱️ Issue #15</a>
+  <a href="https://github.com/openeverest/plugin-hub/issues/15" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;background-color:#24292f;color:#fff;text-decoration:none;padding:4px 12px;border-radius:9999px;font-weight:600;font-size:14px;">Issue #15</a>
 </p>
 
 The installation of plugins and providers is now done with Helm. You
@@ -135,7 +138,7 @@ which might not be ideal.
 ### Detect old versions
 
 <p>
-  <a href="https://github.com/openeverest/plugin-hub/issues/14" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;background-color:#24292f;color:#fff;text-decoration:none;padding:4px 12px;border-radius:9999px;font-weight:600;font-size:14px;">🔔 Issue #14</a>
+  <a href="https://github.com/openeverest/plugin-hub/issues/14" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;background-color:#24292f;color:#fff;text-decoration:none;padding:4px 12px;border-radius:9999px;font-weight:600;font-size:14px;">Issue #14</a>
   <span style="display:inline-flex;align-items:center;background-color:#7057ff;color:#fff;padding:4px 12px;border-radius:9999px;font-weight:600;font-size:13px;margin-left:6px;">good first issue</span>
 </p>
 
