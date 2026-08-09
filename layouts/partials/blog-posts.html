@@ -12,8 +12,8 @@
             {{ if eq .File.LogicalName "index.md" }}
             <article class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col overflow-hidden">
                 {{ if .Params.image.url }}
-                <a href="{{ .Permalink }}" class="block flex-shrink-0">
-                    <img src="{{ .RelPermalink }}{{ .Params.image.url }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
+                <a href="{{ .Permalink }}" class="block flex-shrink-0 h-48 bg-gray-50 border-b border-gray-100">
+                    <img src="{{ .RelPermalink }}{{ .Params.image.url }}" alt="{{ .Title }}" class="w-full h-48 object-contain">
                 </a>
                 {{ end }}
                 <div class="p-8 flex flex-col flex-1">
