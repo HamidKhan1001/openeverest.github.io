@@ -128,7 +128,7 @@ run a single command that pulls an OCI package and installs
 everything. This is what we have today in the plugin's installation
 instruction section.
 
-![Plugin installation instructions showing Helm command](blog-hub-2.png)
+<img src="blog-hub-2.png" alt="Plugin installation instructions showing Helm command" style="max-width:480px;width:100%;height:auto;" />
 
 In an ideal world we don't want users to switch to terminal. It should be
 possible to install extensions with a click of a button. It is not
@@ -147,6 +147,20 @@ can enhance this and alert the users about new versions released. It
 will be the first step towards some notification system within the
 plugin. It can be developed further, where we push notifications about
 security vulnerabilities and various extension enhancements.
+
+### Show the Hub on the website
+
+<p>
+  <a href="https://github.com/openeverest/openeverest.github.io/issues/119" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;background-color:#24292f;color:#fff;text-decoration:none;padding:4px 12px;border-radius:9999px;font-weight:600;font-size:14px;">Issue #119</a>
+  <span style="display:inline-flex;align-items:center;background-color:#7057ff;color:#fff;padding:4px 12px;border-radius:9999px;font-weight:600;font-size:13px;margin-left:6px;">good first issue</span>
+</p>
+
+Right now you have to install OpenEverest to see what plugins and
+providers are out there. We want to list them on
+[openeverest.io](https://openeverest.io) as well, so anyone can browse
+the available technologies before spinning up a cluster. The data is
+already there in the hub repo — the task is to pull the same
+`index.json` and render it on the website.
 
 ## Conclusion
 
