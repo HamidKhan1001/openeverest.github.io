@@ -185,6 +185,6 @@ Want to help shape the Hub and the rest of the OpenEverest ecosystem? There are 
     Connect with Maintainers
   </a>
   <a href="https://openeverest.io/documentation/current/quick-install.html" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background-color:#24292f;color:#fff;text-decoration:none;padding:10px 20px;border-radius:6px;font-weight:600;font-size:15px;">
-    🚀 Quickstart
+    Quickstart
   </a>
 </div>
