@@ -62,7 +62,7 @@ the `index.json` file is put together by the workflow. It contains
 information about all the providers and plugins.
 
 Users can read more about publishing their extensions in
-[PUBLISHING.md](https://github.com/openeverest/hub/blob/main/PUBLISHING.md).
+[PUBLISHING.md](https://github.com/openeverest/hub/blob/main/docs/PUBLISHING.md).
 
 ### Plugin
 
