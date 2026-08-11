@@ -810,6 +810,7 @@
       "servicemonitor",
       "set-your-repository-paths-so-tilt-knows-where-to-look",
       "setting-up-databases-with-openeverest",
+      "show-the-hub-on-the-website",
       "sizing-notes-for-local-development",
       "stable-admin-access-and-prioritized-lists",
       "staleness-mitigation-for-controllers-safer-operator-reconciliation",
