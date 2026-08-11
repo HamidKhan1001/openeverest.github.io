@@ -14,7 +14,7 @@
 
     {{ if and .Params.image .Params.image.url }}
     <header class="mb-10">
-        <div class="rounded-xl overflow-hidden shadow-lg bg-[#0f172a]">
+        <div class="rounded-xl overflow-hidden shadow-lg">
             <img src="{{ .RelPermalink }}{{ .Params.image.url }}" alt="{{ .Title }}" class="w-full h-auto">
         </div>
         <div class="mt-6">
