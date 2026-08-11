@@ -31,7 +31,8 @@ Percona ships in production, not something OpenEverest reimplemented itself. Ope
 job is orchestration: turning a single `Instance` spec into a correctly-configured,
 correctly-sized cluster.
 
-**Environment:** kind v0.30.0 (1 control-plane + 3 workers), kubectl v1.32.2, Helm v3.19.0.
+**Environment:** kind v0.30.0 (4 nodes: 1 control-plane + 3 workers, `kindest/node:v1.34.0`),
+kubectl v1.32.2, Helm v3.19.0.
 
 ## 1. Deploy
 
@@ -53,9 +54,56 @@ everest-controller-5fbbd597dc-jj9rg   1/1     Running   0          60s
 everest-server-7c74b67c76-vvg6s       1/1     Running   0          60s
 ```
 
-With the provider installed and registered (I installed it into the same `everest-system`
-namespace as the core — worth doing consistently since the provider watches its own
-release namespace), the actual database spec is refreshingly small. This is the whole
+**The Postgres provider isn't part of that install, though.** The output above only points
+you at the MongoDB provider — that's accurate, not an oversight: the v2.0.0-dev.1 release
+notes say plainly that the preview ships with a single reference provider (MongoDB),
+chosen intentionally as the first one. `provider-percona-postgresql` exists in the
+`openeverest` org, but as of this writing has zero tagged releases — you build and install
+it straight from a `main` branch checkout:
+
+```bash
+git clone --depth 1 https://github.com/openeverest/provider-percona-postgresql.git
+helm repo add percona https://percona.github.io/percona-helm-charts/
+helm dependency build charts/provider-percona-postgresql   # pulls Percona's PG Operator chart v3.0.0
+helm install provider-percona-postgresql charts/provider-percona-postgresql \
+    --namespace everest-system --create-namespace
+```
+
+That install reported success, but the tagged core chart's CRDs turned out to already be
+stale relative to what the provider expects. Applying the provider repo's own example CR
+failed outright:
+
+```
+Error from server (BadRequest): error when creating "examples/instance-example.yaml":
+Instance in version "v1alpha1" cannot be handled as a Instance:
+strict decoding error: unknown field "spec.providerRef"
+```
+
+The dev.1-tagged core chart still ships the old `Instance` API (`spec.provider` as a plain
+string); the provider's `main` branch already targets the new one
+(`spec.providerRef.name`). The two repos drifted apart in the roughly two and a half
+months since the dev.1 tag. The fix is the same one the provider's own `Makefile` already
+runs (its `install-crds` target) — pull the CRDs from the `release-2.0` branch tip instead
+of trusting the tagged chart:
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/openeverest/openeverest/release-2.0/config/crd/bases/core.openeverest.io_providers.yaml
+kubectl apply -f https://raw.githubusercontent.com/openeverest/openeverest/release-2.0/config/crd/bases/core.openeverest.io_instances.yaml
+```
+
+Even past that, the provider repo's own shipped example CR reconciled straight to
+`Failed` — it only declares an `engine` component, and the provider hard-requires a
+`proxy` (PgBouncer) component too. So the spec below is one I wrote myself, not the
+example.
+
+One more thing worth knowing up front: **the Instance has to live in the same namespace
+you installed the provider into.** The bundled Percona PG Operator defaults its watch
+scope to its own release namespace, so an Instance created anywhere else just sits there
+forever with no pods and no error — nothing in the docs says this. (I found out the slow
+way, including a stuck `Terminating` delete that needed a manual finalizer patch to
+clear.)
+
+With that sorted, the actual database spec is refreshingly small. This is the whole
 definition for a 3-node HA Postgres cluster:
 
 ```yaml
@@ -101,7 +149,8 @@ NAME         PROVIDER                      VERSION   PHASE   AGE
 pg-ha-demo   provider-percona-postgresql   18.4-1    Ready   ...
 ```
 
-Credentials come out the other side automatically, no manual wiring:
+Credentials are minted automatically by the operator and land in a Kubernetes Secret —
+no manual wiring:
 
 ```
 host           : pg-ha-demo-primary.everest-system.svc
@@ -116,8 +165,10 @@ password       : <generated>
 The only setting I actually tuned for this demo was replica count and storage size —
 `engine.replicas: 3` and `storage.size: 5Gi` are the two knobs that matter for an HA
 layout. The provider's `cluster` topology defaults to exactly this shape: one primary,
-two replicas, fronted by a two-node PgBouncer proxy tier. For a heavier workload you'd
-raise the resource requests; for this demo, minimal was plenty.
+two replicas, fronted by a two-node PgBouncer proxy tier — a connection-pooling layer
+clients connect to instead of the Postgres pods directly, so pod churn during a failover
+doesn't require any client-side reconnect logic. For a heavier workload you'd raise the
+resource requests; for this demo, minimal was plenty.
 
 ## 3. Verify HA
 
@@ -132,6 +183,12 @@ pg-ha-demo-instance1-gqgt-0    primary
 pg-ha-demo-instance1-2jfq-0    replica
 pg-ha-demo-instance1-r9cw-0    replica
 ```
+
+(Those labels really do say `crunchydata.com`, not a Percona one — that's not a typo in
+this post. Percona's PostgreSQL Operator v3.0.0, which the provider bundles, is itself
+built on top of CrunchyData's PGO, and hasn't renamed the CRD group or pod labels away
+from it. Worth knowing if you go looking for "percona" in your own cluster's labels and
+come up empty.)
 
 ```
 $ kubectl exec pg-ha-demo-instance1-gqgt-0 -c database -- \
@@ -187,8 +244,15 @@ kubectl delete pod pg-ha-demo-instance1-gqgt-0 --grace-period=0 --force
 ```
 
 **A new primary was elected and stable in 15–17 seconds, with zero manual
-intervention.** The PostgreSQL timeline advanced correctly (TL 1 → 2), confirming this
-was a real promotion, not just a label swap:
+intervention.** Worth being precise about what that number actually measures: this is a
+hard-killed *pod* that Kubernetes can reschedule straight onto already-healthy nodes.
+Losing an entire node, or a network partition, exercises different timeouts entirely
+(kubelet node-not-ready detection, pod eviction grace periods) and would very likely take
+longer. Treat 15–17s as what a pod-level failure looks like here, not as a general
+failover SLA.
+
+The PostgreSQL timeline advanced correctly (TL 1 → 2), confirming this was a real
+promotion, not just a label swap:
 
 ```
 $ kubectl exec ...2jfq-0 -- patronictl list
@@ -223,6 +287,15 @@ $ kubectl exec ...2jfq-0 -- psql -c "SELECT * FROM ha_demo_test ORDER BY id;"
  34 | written on new primary after failover
 ```
 
+Worth stating plainly rather than glossing over: replication here is async — visible
+back in the `pg_stat_replication` output earlier (`sync_state: async`) — and there was
+exactly one in-flight transaction at kill time. Async replication *can* lose the most
+recently committed transaction(s) if the primary dies before they ship to a replica; this
+run just didn't land in that window. "Zero data loss" describes this specific test, not a
+guarantee the setup gives you by default — if you need a stronger guarantee, that's a
+`synchronous_commit` / synchronous-replica configuration question for the provider, not
+something this test proves either way.
+
 The old primary rejoined automatically once its pod restarted — Patroni detected the
 timeline divergence and re-synced it as a replica, catching up to zero lag in under 30
 seconds:
@@ -236,20 +309,39 @@ $ kubectl exec ...2jfq-0 -- patronictl list
 
 ## Takeaway
 
-The core promise held up: define a small, declarative `Instance` spec, and get a real
-3-node HA PostgreSQL cluster with automatic leader election, sub-20-second failover, zero
-data loss, and a connection endpoint that follows the leader without any manual DNS or
-secret updates. That reliability isn't OpenEverest reinventing database internals — it's
-OpenEverest correctly orchestrating Percona's own production-grade operator, which is
-exactly the kind of separation of concerns you want from a provider model: OpenEverest
-handles the declarative interface and lifecycle, the operator handles the hard
-distributed-systems part it's already proven at scale.
+The core HA behavior held up under an actual kill: automatic leader election, a real
+timeline promotion rather than a label swap, a connection endpoint that followed the new
+primary with no manual DNS or secret change, and no lost data in this particular run.
+That's Percona's own production-grade PostgreSQL Operator and Patroni doing what they
+already do in production — OpenEverest's job here is correctly turning a small
+declarative `Instance` spec into that cluster, not reimplementing any of the HA logic
+itself.
 
-A couple of rough edges are worth a quick note since this is a v2 developer preview: the
-Postgres provider isn't bundled in the dev.1 release yet (it's a separate, actively
-developed repo), and I had to apply a couple of CRD updates by hand to match the
-provider's current API. Nothing that affected the HA behavior itself — just setup
-friction you should expect from software still labeled "developer preview."
+Getting there was rougher than the walkthrough above makes it look, though, and since
+this is a developer preview it's worth being specific about where, rather than smoothing
+it over:
+
+- Postgres isn't part of the officially shipped v2.0.0-dev.1 preview —
+  `provider-percona-postgresql` has no tagged releases yet, so you're building from
+  `main`, not installing a supported artifact.
+- The tagged core chart's CRDs are already out of sync with what the provider's `main`
+  branch expects (`spec.provider` vs `spec.providerRef`) — a stock install plus the
+  provider's own example fails on a schema error until you manually pull newer CRDs.
+- The provider's own shipped example CR is itself broken (missing a required `proxy`
+  component).
+- The provider and its Instances have to share a namespace — undocumented, and getting it
+  wrong fails silently instead of with an error.
+
+None of that is a knock on the HA design itself — it's exactly the kind of rough edge
+you'd expect from a provider repo that's still pre-release, and it's the kind of thing
+that gets smoothed out fast once it's visible.
+
+Also worth being upfront about: OpenEverest isn't tied to Percona specifically. It's
+built to be provider-agnostic, and CloudNativePG is already available as a
+community-contributed provider alongside Percona's. Both (and other extensions) are
+listed in the [OpenEverest Hub](https://github.com/openeverest/hub) — the community
+catalog of installable providers and plugins, itself currently in developer preview.
+`provider-percona-postgresql` is just the one this post happened to test.
 
 If you want to try this yourself, the provider repo has setup instructions at
 [openeverest/provider-percona-postgresql](https://github.com/openeverest/provider-percona-postgresql).
