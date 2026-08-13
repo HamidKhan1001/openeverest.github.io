@@ -7,6 +7,28 @@ layout: resources
 
 # Events - will be automatically sorted into upcoming/past based on date
 events:
+  - title: "Meet OpenEverest at FrOSCon 2026"
+    url: "https://froscon.org/en/program/exhibitors/"
+    event_name: "FrOSCon 2026 — Free and Open Source Software Conference"
+    location: "Sankt Augustin, Germany — Hochschule Bonn-Rhein-Sieg"
+    date: 2026-08-15
+    speaker: "Marcin Gwozdz"
+    speaker_slug: "gwozdzm"
+    type: "conference"
+    image: "/images/resources/froscon-2026.jpg"
+    description: "Visit our booth on August 15–16. Marcin Gwozdz will be there to talk about OpenEverest v2 and more."
+
+  - title: "What Does It Actually Take to Build a Managed Database Service on Kubernetes?"
+    url: "https://perconalive.com/2026-amsterdam/talks/what-does-it-actually-take-to-build-a-managed-database-service-on-kube/"
+    event_name: "Percona Live 2026 Amsterdam"
+    location: "Amsterdam, The Netherlands — Mövenpick Hotel Amsterdam City Centre, Matterhorn 2"
+    date: 2026-09-11
+    speaker: "Marcin Gwozdz"
+    speaker_slug: "gwozdzm"
+    type: "conference"
+    image: "/images/resources/percona-live-amsterdam-2026.jpg"
+    description: "Friday, September 11 · 3:45–4:15 PM. Stop by our booth too — the team will be on-site all conference."
+
   - title: "Architecture Without Gatekeepers: Decoupling for Neutrality"
     url: "/events/kubecon-china-2026/"
     event_name: "KubeCon + CloudNativeCon + OpenInfra Summit + PyTorch Conference China 2026"
