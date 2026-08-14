@@ -4154,6 +4154,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#thanks-to-our-contributors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thanks to our contributors
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5372,6 +5383,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#thanks-to-our-contributors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thanks to our contributors
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5424,6 +5446,7 @@ everestctl<span class="w"> </span>backup-storage<span class="w"> </span>create<s
 everestctl<span class="w"> </span>instance<span class="w"> </span>delete<span class="w"> </span>my-db<span class="w"> </span>-n<span class="w"> </span>my-namespace
 </code></pre></div>
 <p>New command groups: <code>auth</code>, <code>instance</code>, <code>backup</code>, <code>restore</code>, <code>backup-storage</code> (alias <code>bs</code>), <code>backup-class</code> (alias <code>bc</code>), <code>provider</code> (alias <code>prov</code>).</p>
+<p><code>everestctl</code> changes were contributed by @VijetaPriya47 through <a href="https://mentorship.lfx.linuxfoundation.org/project/42dff370-4958-4ec4-959c-4aaf6740698c">LFX Mentorship program 2026 Term 2</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>everestctl</code> is <strong>not shipped as a binary with this release</strong>. <code>everestctl install</code> and <code>everestctl uninstall</code> still target v1 and cannot install v2, so publishing the binary would be misleading. To try the commands above against an existing v2 installation, build it from source:</p>
@@ -5654,12 +5677,12 @@ make<span class="w"> </span>build-cli<span class="w">   </span><span class="c1">
 <li>ConfigMap API with provider-declared schemas and runtime validation (<a href="https://github.com/openeverest/openeverest/pull/2541">#2541</a>).</li>
 <li>API auth token management with refresh tokens, and matching UI integration (<a href="https://github.com/openeverest/openeverest/pull/2361">#2361</a>, <a href="https://github.com/openeverest/openeverest/pull/2362">#2362</a>).</li>
 <li>Audit events carrying the acting user (<a href="https://github.com/openeverest/openeverest/pull/2415">#2415</a>).</li>
-<li>Replay buffer on <code>GET /v1/events</code> so reconnecting subscribers do not silently lose events (<a href="https://github.com/openeverest/openeverest/pull/2591">#2591</a>).</li>
+<li>Replay buffer on <code>GET /v1/events</code> so reconnecting subscribers do not silently lose events (<a href="https://github.com/openeverest/openeverest/pull/2591">#2591</a>). (by @onkar717)</li>
 <li>Provider upgrade catalog: <code>spec.release.version</code>, <code>spec.release.minUpgradableFrom</code>, and <code>deprecated</code> / <code>removedInVersion</code> on component versions (<a href="https://github.com/openeverest/openeverest/pull/2604">#2604</a>).</li>
 <li><code>affinity</code> on <code>Instance.spec.components[]</code> (<a href="https://github.com/openeverest/openeverest/pull/2364">#2364</a>) and <code>service</code> / <code>loadBalancerService</code> configuration on components.</li>
 <li>Plugin hub in the v2 UI, with plugin-declared permissions (<a href="https://github.com/openeverest/openeverest/pull/2367">#2367</a>, <a href="https://github.com/openeverest/openeverest/pull/2424">#2424</a>).</li>
 <li>Tiles view for creating instances in the UI (<a href="https://github.com/openeverest/openeverest/pull/2453">#2453</a>).</li>
-<li>Backup/Restore reference validation at the API layer on create (<a href="https://github.com/openeverest/openeverest/pull/2667">#2667</a>).</li>
+<li>Backup/Restore reference validation at the API layer on create (<a href="https://github.com/openeverest/openeverest/pull/2667">#2667</a>). (by @Adii-45)</li>
 <li><code>Instance</code> reconcile-request helper in provider-runtime (<a href="https://github.com/openeverest/openeverest/pull/2515">#2515</a>).</li>
 <li>Finalizer on <code>BackupStorage</code> plus end-to-end tests (<a href="https://github.com/openeverest/openeverest/pull/2327">#2327</a>, <a href="https://github.com/openeverest/openeverest/pull/2353">#2353</a>).</li>
 <li>RBAC fuzz tests (<a href="https://github.com/openeverest/openeverest/pull/2581">#2581</a>), Dependabot coverage for v2 (<a href="https://github.com/openeverest/openeverest/pull/2673">#2673</a>), CodeQL scanning of <code>release-2.0</code> and workflow files (<a href="https://github.com/openeverest/openeverest/pull/2753">#2753</a>), and SBOM attestation for release artifacts (<a href="https://github.com/openeverest/openeverest/pull/2858">#2858</a>).</li>
@@ -5683,34 +5706,34 @@ make<span class="w"> </span>build-cli<span class="w">   </span><span class="c1">
 <li>
 <p><strong>Breaking:</strong> <code>POST /v1/auth/revoke</code> is now unauthenticated (<a href="https://github.com/openeverest/openeverest/pull/2448">#2448</a>).</p>
 </li>
-<li>Shared HTTP-poll classification extracted into <code>pkg/cli/wait</code>, so every <code>--wait</code>/<code>--watch</code> command behaves the same on transient errors (<a href="https://github.com/openeverest/openeverest/pull/2808">#2808</a>).</li>
+<li>Shared HTTP-poll classification extracted into <code>pkg/cli/wait</code>, so every <code>--wait</code>/<code>--watch</code> command behaves the same on transient errors (<a href="https://github.com/openeverest/openeverest/pull/2808">#2808</a>). (by @VijetaPriya47)</li>
 <li>UI upgraded from MUI 5 to MUI 7 (<a href="https://github.com/openeverest/openeverest/pull/2548">#2548</a>, <a href="https://github.com/openeverest/openeverest/pull/2550">#2550</a>, <a href="https://github.com/openeverest/openeverest/pull/2569">#2569</a>).</li>
-<li>Circular dependency removed from the UI and a strict ESLint rule added to prevent regressions (<a href="https://github.com/openeverest/openeverest/pull/2417">#2417</a>).</li>
+<li>Circular dependency removed from the UI and a strict ESLint rule added to prevent regressions (<a href="https://github.com/openeverest/openeverest/pull/2417">#2417</a>). (by @StepanovPlaton)</li>
 <li><code>golangci-lint</code> upgraded to v2, and CI now fails on unformatted Go code (<a href="https://github.com/openeverest/openeverest/pull/2535">#2535</a>, <a href="https://github.com/openeverest/openeverest/pull/2507">#2507</a>).</li>
 <li>GitHub Actions pinned to full-length commit SHAs and workflow token permissions scoped down (<a href="https://github.com/openeverest/openeverest/pull/2751">#2751</a>, <a href="https://github.com/openeverest/openeverest/pull/2752">#2752</a>).</li>
 <li>Tilt development environment reworked for core development, with <code>InstancePreset</code>, plugin-hub and PXC provider support (<a href="https://github.com/openeverest/openeverest/pull/2483">#2483</a>, <a href="https://github.com/openeverest/openeverest/pull/2439">#2439</a>, <a href="https://github.com/openeverest/openeverest/pull/2508">#2508</a>, <a href="https://github.com/openeverest/openeverest/pull/2346">#2346</a>).</li>
 </ul>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
-<li>provider-runtime reported <code>/readyz</code> as ready before the controller manager and its cache-backed client were usable (<a href="https://github.com/openeverest/openeverest/pull/2611">#2611</a>).</li>
-<li>Provider status messages were silently dropped instead of surfacing on the <code>Instance</code> (<a href="https://github.com/openeverest/openeverest/pull/2366">#2366</a>).</li>
+<li>provider-runtime reported <code>/readyz</code> as ready before the controller manager and its cache-backed client were usable (<a href="https://github.com/openeverest/openeverest/pull/2611">#2611</a>). (by @Anuragkumar-687)</li>
+<li>Provider status messages were silently dropped instead of surfacing on the <code>Instance</code> (<a href="https://github.com/openeverest/openeverest/pull/2366">#2366</a>). (by @AdityaPimpalkar)</li>
 <li>Nil connection reference caused a panic when an instance had no connection secret yet (<a href="https://github.com/openeverest/openeverest/pull/2590">#2590</a>).</li>
-<li>Init containers were counted incorrectly when computing instance resource totals (<a href="https://github.com/openeverest/openeverest/pull/2719">#2719</a>).</li>
-<li><code>MonitoringConfig</code> finalizers and secrets were not cleaned up reliably on delete (<a href="https://github.com/openeverest/openeverest/pull/2408">#2408</a>).</li>
-<li>The server did not handle <code>SIGTERM</code>, so pods were killed instead of shutting down gracefully (<a href="https://github.com/openeverest/openeverest/pull/2820">#2820</a>).</li>
-<li>OIDC well-known configuration fetch had no HTTP timeout (<a href="https://github.com/openeverest/openeverest/pull/2725">#2725</a>).</li>
-<li>RBAC informer start errors were swallowed, and the ConfigMap adapter&rsquo;s Kubernetes calls had no timeout (<a href="https://github.com/openeverest/openeverest/pull/2830">#2830</a>, <a href="https://github.com/openeverest/openeverest/pull/2822">#2822</a>).</li>
-<li>Nil pointer panic when the JWT private key PEM was invalid (<a href="https://github.com/openeverest/openeverest/pull/2851">#2851</a>).</li>
-<li>Token blocklist update errors were not propagated (<a href="https://github.com/openeverest/openeverest/pull/2769">#2769</a>).</li>
+<li>Init containers were counted incorrectly when computing instance resource totals (<a href="https://github.com/openeverest/openeverest/pull/2719">#2719</a>). (by @Jay2006sawant)</li>
+<li><code>MonitoringConfig</code> finalizers and secrets were not cleaned up reliably on delete (<a href="https://github.com/openeverest/openeverest/pull/2408">#2408</a>). (by @alokkumardalei-wq)</li>
+<li>The server did not handle <code>SIGTERM</code>, so pods were killed instead of shutting down gracefully (<a href="https://github.com/openeverest/openeverest/pull/2820">#2820</a>). (by @Harkirat1309)</li>
+<li>OIDC well-known configuration fetch had no HTTP timeout (<a href="https://github.com/openeverest/openeverest/pull/2725">#2725</a>). (by @Harsh63870)</li>
+<li>RBAC informer start errors were swallowed, and the ConfigMap adapter&rsquo;s Kubernetes calls had no timeout (<a href="https://github.com/openeverest/openeverest/pull/2830">#2830</a> by @alloutflo, <a href="https://github.com/openeverest/openeverest/pull/2822">#2822</a> by @Harkirat1309).</li>
+<li>Nil pointer panic when the JWT private key PEM was invalid (<a href="https://github.com/openeverest/openeverest/pull/2851">#2851</a>). (by @Atishyy27)</li>
+<li>Token blocklist update errors were not propagated (<a href="https://github.com/openeverest/openeverest/pull/2769">#2769</a>). (by @Anuragkumar-687)</li>
 <li>The arm64 server image shipped amd64 binaries (<a href="https://github.com/openeverest/openeverest/pull/2606">#2606</a>).</li>
 <li>Helm chart dependency builds failed without a configured registry client (<a href="https://github.com/openeverest/openeverest/pull/2607">#2607</a>).</li>
 <li>Editing a backup storage location and the empty state of scheduled backups both errored in the UI (<a href="https://github.com/openeverest/openeverest/pull/2320">#2320</a>, <a href="https://github.com/openeverest/openeverest/pull/2319">#2319</a>).</li>
-<li>Database credentials cache was not scoped by namespace, and the RBAC route guard was not reactive (<a href="https://github.com/openeverest/openeverest/pull/2173">#2173</a>).</li>
-<li>The upgrade dialog reopened after being dismissed (<a href="https://github.com/openeverest/openeverest/pull/2228">#2228</a>).</li>
-<li>Multiline values overflowed the Database Summary preview (<a href="https://github.com/openeverest/openeverest/pull/2090">#2090</a>).</li>
+<li>Database credentials cache was not scoped by namespace, and the RBAC route guard was not reactive (<a href="https://github.com/openeverest/openeverest/pull/2173">#2173</a>). (by @ashnaaseth2325-oss)</li>
+<li>The upgrade dialog reopened after being dismissed (<a href="https://github.com/openeverest/openeverest/pull/2228">#2228</a>). (by @ashnaaseth2325-oss)</li>
+<li>Multiline values overflowed the Database Summary preview (<a href="https://github.com/openeverest/openeverest/pull/2090">#2090</a>). (by @StepanovPlaton)</li>
 <li>External links in the UI were missing <code>noreferrer</code>, and the login page lost spacing between the intro text and the community links (<a href="https://github.com/openeverest/openeverest/pull/2857">#2857</a>, <a href="https://github.com/openeverest/openeverest/pull/2902">#2902</a>).</li>
-<li><code>everestctl</code> flag and message fixes, including <code>-n</code> as a shorthand for <code>--namespace</code> and the <code>namesapce</code> typo (<a href="https://github.com/openeverest/openeverest/pull/2856">#2856</a>, <a href="https://github.com/openeverest/openeverest/pull/2795">#2795</a>, <a href="https://github.com/openeverest/openeverest/pull/2444">#2444</a>, <a href="https://github.com/openeverest/openeverest/pull/2252">#2252</a>, <a href="https://github.com/openeverest/openeverest/pull/2196">#2196</a>).</li>
-<li>Documentation typos, broken links, stale extension CLI examples, the EKS z1d EBS volume limit, and the <code>providerRef.name</code> plugin filter reference (<a href="https://github.com/openeverest/openeverest/pull/2458">#2458</a>, <a href="https://github.com/openeverest/openeverest/pull/2460">#2460</a>, <a href="https://github.com/openeverest/openeverest/pull/2622">#2622</a>, <a href="https://github.com/openeverest/openeverest/pull/2625">#2625</a>, <a href="https://github.com/openeverest/openeverest/pull/2778">#2778</a>, <a href="https://github.com/openeverest/openeverest/pull/2818">#2818</a>, <a href="https://github.com/openeverest/openeverest/pull/2624">#2624</a>, <a href="https://github.com/openeverest/openeverest/pull/2840">#2840</a>).</li>
+<li><code>everestctl</code> flag and message fixes, including <code>-n</code> as a shorthand for <code>--namespace</code> and the <code>namesapce</code> typo (<a href="https://github.com/openeverest/openeverest/pull/2856">#2856</a>, <a href="https://github.com/openeverest/openeverest/pull/2795">#2795</a> by @Bhupesh-081, <a href="https://github.com/openeverest/openeverest/pull/2444">#2444</a> by @sahilforkshere, <a href="https://github.com/openeverest/openeverest/pull/2252">#2252</a> by @abhisheksainimitawa, <a href="https://github.com/openeverest/openeverest/pull/2196">#2196</a> by @ayushHardeniya).</li>
+<li>Documentation typos, broken links, stale extension CLI examples, the EKS z1d EBS volume limit, and the <code>providerRef.name</code> plugin filter reference (<a href="https://github.com/openeverest/openeverest/pull/2458">#2458</a> by @Pranav-IIITM, <a href="https://github.com/openeverest/openeverest/pull/2460">#2460</a> by @Pranav-IIITM, <a href="https://github.com/openeverest/openeverest/pull/2622">#2622</a> by @false200, <a href="https://github.com/openeverest/openeverest/pull/2625">#2625</a> by @Jay2006sawant, <a href="https://github.com/openeverest/openeverest/pull/2778">#2778</a> by @Bhupesh-081, <a href="https://github.com/openeverest/openeverest/pull/2818">#2818</a> by @Adii-45, <a href="https://github.com/openeverest/openeverest/pull/2624">#2624</a> by @Jay2006sawant, <a href="https://github.com/openeverest/openeverest/pull/2840">#2840</a> by @LarytheLord).</li>
 </ul>
 <hr />
 <h2 id="installing-openeverest-200-developer-preview-2">🚀 Installing OpenEverest 2.0.0 Developer Preview 2<a class="headerlink" href="#installing-openeverest-200-developer-preview-2" title="Permanent link">&para;</a></h2>
@@ -5775,6 +5798,10 @@ helm<span class="w"> </span>install<span class="w"> </span>everest-core<span cla
 <li><a href="https://github.com/openeverest/specs/blob/main/specs/003-generic-plugins.md">Generic Plugins Spec</a></li>
 <li><a href="https://openeverest.io/blog/v2-developer-preview-release/">Blog post about the v2 Developer Preview</a></li>
 </ul>
+<hr />
+<h2 id="thanks-to-our-contributors">Thanks to our contributors<a class="headerlink" href="#thanks-to-our-contributors" title="Permanent link">&para;</a></h2>
+<p>This release wouldn&rsquo;t have been possible without our community. Huge thanks to everyone who contributed code, fixes, and improvements to Developer Preview 2:</p>
+<p>@abhisheksainimitawa, @Adii-45, @AdityaPimpalkar, @alloutflo, @alokkumardalei-wq, @Anuragkumar-687, @ashnaaseth2325-oss, @Atishyy27, @ayushHardeniya, @Bhupesh-081, @cansayin, @false200, @Harkirat1309, @Harsh63870, @Jay2006sawant, @LarytheLord, @onkar717, @Pranav-IIITM, @sahilforkshere, @StepanovPlaton, @VijetaPriya47</p>
 <hr />
 <p><strong>Full Changelog</strong>: https://github.com/openeverest/openeverest/compare/v2.0.0-dev.1&hellip;v2.0.0-dev.2</p>
 
