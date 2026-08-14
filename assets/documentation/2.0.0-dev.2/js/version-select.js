@@ -46,7 +46,13 @@ window.addEventListener('DOMContentLoaded', function () {
       realVersion
     );
     select.addEventListener('change', function (event) {
-      window.location.href = ABS_BASE_URL + '/../' + this.value;
+      var selectedVersion = String(this.value || '');
+      // Allow only expected version token characters.
+      if (!/^[A-Za-z0-9._-]+$/.test(selectedVersion)) {
+        return;
+      }
+      window.location.href =
+        ABS_BASE_URL + '/../' + encodeURIComponent(selectedVersion);
     });
 
     var container = document.createElement('div');
