@@ -5202,21 +5202,20 @@ gke-&lt;name&gt;-default-pool-75d48bfc-zl7k   Ready    &lt;none&gt;   11h   v1.2
 helm<span class="w"> </span>repo<span class="w"> </span>update
 helm<span class="w"> </span>install<span class="w"> </span>everest-core<span class="w"> </span>openeverest/openeverest<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--devel<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--version<span class="w"> </span><span class="s2">&quot;2.0.0-dev.1&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--version<span class="w"> </span><span class="s2">&quot;2.0.0-dev.2&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--namespace<span class="w"> </span>everest-system<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--create-namespace
 </code></pre></div>
 </li>
 <li>
 <p>Install the MongoDB Provider.</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>provider-percona-server-mongodb<span class="w"> </span>https://openeverest.github.io/provider-percona-server-mongodb/
-helm<span class="w"> </span>repo<span class="w"> </span>update
-helm<span class="w"> </span>install<span class="w"> </span>provider-percona-server-mongodb<span class="w"> </span>provider-percona-server-mongodb/provider-percona-server-mongodb<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--namespace<span class="w"> </span>everest-system
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>provider-percona-server-mongodb<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>oci://ghcr.io/openeverest/charts/provider-percona-server-mongodb<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>everest-system
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Additional providers will be available in future releases. See <a href="extend/providers.html">Providers</a> for more details.</p>
+<div class="admonition tip">
+<p class="admonition-title">Find more providers and plugins in the Plugin Hub</p>
+<p>OpenEverest now ships with the <strong>Plugin Hub</strong>, an in-product catalog for discovering additional providers and plugins. Open it in the OpenEverest UI at <code>/plugins/plugin-hub</code>, or find it in the left-hand menu. Learn more in the <a href="extend/hub.html">Extension Hub docs</a> and the <a href="https://openeverest.io/blog/the-hub-introduction/">Plugin Hub introduction blog post</a>.</p>
 </div>
 <details class="info">
 <summary> 🌐 Install OpenEverest and access it using Ingress</summary>

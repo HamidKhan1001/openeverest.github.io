@@ -5424,6 +5424,15 @@ everestctl<span class="w"> </span>backup-storage<span class="w"> </span>create<s
 everestctl<span class="w"> </span>instance<span class="w"> </span>delete<span class="w"> </span>my-db<span class="w"> </span>-n<span class="w"> </span>my-namespace
 </code></pre></div>
 <p>New command groups: <code>auth</code>, <code>instance</code>, <code>backup</code>, <code>restore</code>, <code>backup-storage</code> (alias <code>bs</code>), <code>backup-class</code> (alias <code>bc</code>), <code>provider</code> (alias <code>prov</code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>everestctl</code> is <strong>not shipped as a binary with this release</strong>. <code>everestctl install</code> and <code>everestctl uninstall</code> still target v1 and cannot install v2, so publishing the binary would be misleading. To try the commands above against an existing v2 installation, build it from source:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>v2.0.0-dev.2<span class="w"> </span>https://github.com/openeverest/openeverest.git
+<span class="nb">cd</span><span class="w"> </span>openeverest
+make<span class="w"> </span>build-cli<span class="w">   </span><span class="c1"># produces bin/everestctl</span>
+</code></pre></div>
+<p>Installation remains Helm-only for this preview.</p>
+</div>
 <h3 id="point-in-time-recovery-end-to-end">Point-in-time recovery, end to end<a class="headerlink" href="#point-in-time-recovery-end-to-end" title="Permanent link">&para;</a></h3>
 <p>PITR is now a first-class part of the v2 model rather than a modifier on a backup reference.</p>
 <ul>
