@@ -12,6 +12,9 @@ staticDir = ['static', 'assets']
   apiSpecURL = 'https://raw.githubusercontent.com/percona/everest/refs/tags/v${version}/docs/spec/openapi.yml'
   defaultApiVersion = '2.0.0-dev.2'
 
+[pagination]
+  pagerSize = 10
+
 [build]
   writeStats = true
 

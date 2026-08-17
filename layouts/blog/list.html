@@ -23,9 +23,10 @@
         {{ end }}
     </header>
 
+    {{ $posts := where .Pages "File.LogicalName" "index.md" }}
+    {{ $paginator := .Paginate $posts }}
     <div class="space-y-8">
-        {{ range .Pages }}
-        {{ if and .File (eq .File.LogicalName "index.md") }}
+        {{ range $paginator.Pages }}
         <article class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
             <h2 class="text-2xl font-semibold mb-4">
                 <a href="{{ .Permalink }}" class="text-gray-900 hover:text-blue-600">{{ .Title }}</a>
@@ -76,7 +77,30 @@
             </div>
         </article>
         {{ end }}
-        {{ end }}
     </div>
+
+    {{ if gt $paginator.TotalPages 1 }}
+    <nav class="flex items-center justify-center gap-2 mt-12" aria-label="Blog pagination">
+        {{ if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}" class="px-4 py-2 rounded-lg border-2 border-gray-300 text-gray-700 hover:border-[#7790DE] hover:text-[#7790DE] font-semibold transition-colors" aria-label="Previous page">Previous</a>
+        {{ else }}
+        <span class="px-4 py-2 rounded-lg border-2 border-gray-200 text-gray-400 font-semibold cursor-not-allowed">Previous</span>
+        {{ end }}
+
+        {{ range $paginator.Pagers }}
+        {{ if eq . $paginator }}
+        <span class="px-4 py-2 rounded-lg bg-[#7790DE] text-white font-semibold">{{ .PageNumber }}</span>
+        {{ else }}
+        <a href="{{ .URL }}" class="px-4 py-2 rounded-lg border-2 border-gray-300 text-gray-700 hover:border-[#7790DE] hover:text-[#7790DE] font-semibold transition-colors">{{ .PageNumber }}</a>
+        {{ end }}
+        {{ end }}
+
+        {{ if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}" class="px-4 py-2 rounded-lg border-2 border-gray-300 text-gray-700 hover:border-[#7790DE] hover:text-[#7790DE] font-semibold transition-colors" aria-label="Next page">Next</a>
+        {{ else }}
+        <span class="px-4 py-2 rounded-lg border-2 border-gray-200 text-gray-400 font-semibold cursor-not-allowed">Next</span>
+        {{ end }}
+    </nav>
+    {{ end }}
 </div>
 {{ end }}

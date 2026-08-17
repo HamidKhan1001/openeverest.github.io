@@ -136,6 +136,7 @@
       "container",
       "cta-block",
       "cta-headline",
+      "cursor-not-allowed",
       "cursor-pointer",
       "disabled:cursor-not-allowed",
       "disabled:opacity-50",
