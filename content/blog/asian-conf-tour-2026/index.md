@@ -3,7 +3,7 @@ title: "Two conferences, one continent: our Asian tour (KubeCon Japan + COSCUP)"
 date: 2026-08-14T12:00:00
 draft: false
 image:
-    url:
+    url: asiatour2026.png
     attribution:
 authors:
   - spron-in
@@ -95,10 +95,12 @@ To anyone who regularly attends KubeCon in North America or Europe: we recommend
 <div class="tour-gallery">
   <img id="cs-1" src="coscup-0.jpg" alt="OpenEverest at COSCUP, NTUST campus in Taipei">
   <img id="cs-2" src="coscup-1.jpg" alt="OpenEverest booth and talks at COSCUP">
+  <img id="cs-3" src="coscup-2.jpg" alt="Sergey Pronin talks about OpenEverest at COSCUP">
 </div>
 <div class="tour-dots">
   <a href="#cs-1">1</a>
   <a href="#cs-2">2</a>
+  <a href="#cs-3">2</a>
 </div>
 
 The crowd was mostly students, with some companies and a few investors — far fewer than at KubeCon Japan. Day two was dampened by Typhoon Dolphin, which kept part of the audience at home. A few things stood out:
