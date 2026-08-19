@@ -15,6 +15,17 @@ staticDir = ['static', 'assets']
 [pagination]
   pagerSize = 10
 
+[outputFormats]
+  [outputFormats.llms]
+    mediaType = "text/plain"
+    baseName = "llms"
+    isPlainText = true
+    rel = "alternate"
+    permalinkable = false
+
+[outputs]
+  home = ["HTML", "RSS", "llms"]
+
 [build]
   writeStats = true
 
