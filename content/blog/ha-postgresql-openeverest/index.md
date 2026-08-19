@@ -2,12 +2,9 @@
 title: "High Availability PostgreSQL: From Zero to Cluster"
 date: 2026-08-06T10:00:00
 draft: false
-# TODO(shivansh): no featured image yet — add a real screenshot (e.g. the
-# patronictl list output) to this folder and restore the image block below
-# before merging:
-# image:
-#     url: patroni-list.png
-#     attribution:
+image:
+    url: ui-instance-detail.png
+    attribution:
 authors:
  - shivansh-source
 tags:
@@ -35,12 +32,6 @@ correctly-sized cluster.
 kubectl v1.32.2, Helm v3.19.0, OpenEverest **v2.0.0-dev.2**, `provider-percona-postgresql`
 **v0.1.0**.
 
-> **Note:** `provider-percona-postgresql` v0.1.0 is this provider's first tagged release,
-> explicitly compatibility-pinned to dev.2. That pairing eliminates a handful of rough
-> edges that used to exist in earlier, untagged builds — a CRD schema mismatch, a broken
-> example CR, an undocumented namespace requirement among them — covered in the Takeaway
-> for the record, but none of them show up in the walkthrough below.
-
 ## 1. Deploy
 
 Installing the OpenEverest v2 core is a single Helm install:
@@ -62,8 +53,7 @@ everest-core-plugin-hub-6b5dbb49c4-bcgdc   1/1     Running   0          4m31s
 everest-server-748d76868f-fqkpm            1/1     Running   0          4m31s
 ```
 
-The provider is now a proper tagged release, published as an OCI artifact — no more
-cloning `main` and building the chart by hand:
+The provider installs the same way, as a tagged OCI artifact:
 
 ```bash
 helm install provider-percona-postgresql \
@@ -71,7 +61,6 @@ helm install provider-percona-postgresql \
     --version 0.1.0 -n everest-system
 ```
 
-That's it. No CRD patching, no broken example to route around, no namespace gotcha —
 `Provider` comes up clean on the first try:
 
 ```
@@ -109,6 +98,20 @@ spec:
 kubectl apply -f pg-ha-demo.yaml -n everest-system
 ```
 
+The same thing is a few clicks in the Everest UI, if you'd rather not hand-write YAML —
+pick the provider, name the database, and the same fields (topology, node count, proxy)
+are just form inputs:
+
+![Create database wizard in the Everest UI, showing basic information and a live database summary](ui-create-database.png)
+
+That defaults to a 2-node topology; bumping it to 3 nodes to match the CLI example above
+is a live edit from the instance's own page after creation, not something you have to get
+right up front — the Resources panel supports scaling the running cluster, not just
+setting it at creation time. Either path lands in the same place, visible in the
+instance list:
+
+![Everest UI instance list showing pg-ha-demo-ui as Ready](ui-instance-ready.png)
+
 The provider translates this into a `PerconaPGCluster` and the operator brings up five
 pods — three Postgres engines, two PgBouncer proxies:
 
@@ -137,6 +140,11 @@ username : pg-ha-demo
 password : <generated>
 uri      : postgresql://pg-ha-demo:<generated>@pg-ha-demo-pgbouncer.everest-system.svc:5432/pg-ha-demo?sslmode=require
 ```
+
+The same details, plus the full topology at a glance, are on the instance's page in the
+UI:
+
+![Everest UI instance detail page for pg-ha-demo-ui, showing 3 nodes, pgbouncer proxy, and connection details](ui-instance-detail.png)
 
 ## 2. Configure
 
@@ -329,31 +337,6 @@ three separate promotions. That's Percona's own production-grade PostgreSQL Oper
 Patroni doing what they already do in production — OpenEverest's job here is correctly
 turning a small declarative `Instance` spec into that cluster, not reimplementing any of
 the HA logic itself.
-
-Worth knowing since this is still a developer preview: earlier, untagged builds of this
-provider had real rough edges, all fixed by the time of `v0.1.0` and absent from
-everything above:
-
-- Postgres used to not be part of the officially shipped preview at all —
-  `provider-percona-postgresql` had no tagged releases, meaning building from `main`
-  rather than installing a supported artifact.
-- The core chart's CRDs used to be out of sync with what the provider expected
-  (`spec.provider` vs `spec.providerRef`) — a stock install plus the provider's own
-  example failed on a schema error until you manually pulled newer CRDs.
-- Fixing the CRDs wasn't enough on its own — a `Provider` object created before the fix
-  had already had a field silently pruned by schema validation, and `helm upgrade`
-  couldn't detect that kind of drift on a CR. Needed a direct `kubectl apply` of the
-  rendered manifest to push it through.
-- The provider's own shipped example CR was broken (missing a required `proxy`
-  component).
-- The provider and its Instances used to have to share a namespace — undocumented, and
-  getting it wrong failed silently instead of with an error
-  ([#18](https://github.com/openeverest/provider-percona-postgresql/issues/18)).
-
-That's exactly the kind of rough edge you'd expect from a provider repo before its first
-tagged release, and exactly how fast it gets smoothed out once it's tracked
-([#13](https://github.com/openeverest/provider-percona-postgresql/issues/13) covers the
-CRD mismatch) — `v0.1.0`, compatibility-pinned to dev.2, ships with all of it resolved.
 
 Also worth being upfront about: OpenEverest isn't tied to Percona specifically. It's
 built to be provider-agnostic, and CloudNativePG is already available as a
