@@ -3,7 +3,7 @@ title: "High Availability PostgreSQL: From Zero to Cluster"
 date: 2026-08-06T10:00:00
 draft: false
 image:
-    url: ui-instance-detail.png
+    url: patroni-list.png
     attribution:
 authors:
  - shivansh-source
