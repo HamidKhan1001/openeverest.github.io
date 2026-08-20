@@ -64,3 +64,57 @@
 }
 </script>
 {{ end }}
+
+<!-- Article structured data -->
+{{ if and .IsPage (eq .Section "blog") }}
+{{ $img := "" }}
+{{ if and .Params.image .Params.image.url }}
+  {{ $u := .Params.image.url }}
+  {{ if hasPrefix $u "/" }}{{ $img = $u | absURL }}{{ else }}{{ $img = printf "%s%s" .Permalink $u }}{{ end }}
+{{ else }}
+  {{ $img = .Site.Params.defaultSocialImage | absURL }}
+{{ end }}
+{{ $desc := .Description }}
+{{ if not $desc }}{{ $desc = .Params.summary }}{{ end }}
+{{ if not $desc }}{{ $desc = .Summary | plainify }}{{ end }}
+{{ $authors := slice }}
+{{ range .Params.authors }}
+  {{ $ap := $.Site.GetPage (printf "/authors/%s" .) }}
+  {{ if $ap }}
+    {{ $authors = $authors | append (dict "name" $ap.Title "url" $ap.Permalink) }}
+  {{ else }}
+    {{ $authors = $authors | append (dict "name" .) }}
+  {{ end }}
+{{ end }}
+{{ if not $authors }}{{ $authors = slice (dict "name" .Site.Params.author) }}{{ end }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ .Title }}",
+  "description": "{{ $desc }}",
+  "image": "{{ $img }}",
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "author": [{{ range $i, $a := $authors }}{{ if $i }},{{ end }}
+    {
+      "@type": "Person",
+      "name": "{{ $a.name }}"{{ with $a.url }},
+      "url": "{{ . }}"{{ end }}
+    }{{ end }}
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ "images/brandkit/logo-horizontal-full-color-dark-min.png" | absURL }}"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  }
+}
+</script>
+{{ end }}
