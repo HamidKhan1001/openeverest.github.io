@@ -26,13 +26,14 @@ you still have to shell into the primary and run `rs.initiate()` with a hand-cra
 member list that matches your pod hostnames exactly. Miss any of it and MongoDB starts
 as a standalone instance with no errors, which is a fun way to lose writes silently.
 
-I wanted to see how much of that OpenEverest v2 would handle on its own. The MongoDB
-provider sits on top of the Percona Server for MongoDB Operator, so it is not
-reimplementing replica set coordination from scratch. OpenEverest's job is
-orchestration: you describe what you want in an `Instance` spec and it figures out the
-StatefulSet, headless service, PVC templates, replica set bootstrap, and credential
-management. The question was whether that abstraction actually held up, or whether you
-still had to go poke at things manually.
+I wanted to see how much of that OpenEverest v2 would handle on its own. OpenEverest
+itself doesn't touch any of that directly. Its job stops at creating an `Instance`
+object describing what you want. The actual work happens one layer down. The MongoDB
+provider's own controller watches for `Instance` objects and translates yours into a
+`PerconaServerMongoDB` custom resource. Percona's own operator for MongoDB is what
+actually builds the StatefulSet, headless Service, PVC templates, and replica set
+bootstrap from that. The question was whether that whole chain actually held up, or
+whether you still had to go poke at things manually.
 
 Everything here ran on a local `kind` cluster. No cloud, no pre-existing installation,
 just a fresh cluster and a 5-minute timer.
